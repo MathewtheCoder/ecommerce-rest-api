@@ -23,5 +23,12 @@ func main() {
 	// Get list of users
 	r.GET("/user/list", controllers.GetUsers)
 	r.POST("/user/login", controllers.UsersLogin)
+
+	// Get list of items
+	r.GET("/item/list", controllers.GetItems)
+	// Create Item
+	r.POST("/item/create", controllers.CreateItem)
+
+	// Start Server
 	r.Run()
 }
