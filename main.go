@@ -28,7 +28,10 @@ func main() {
 	r.GET("/item/list", controllers.GetItems)
 	// Create Item
 	r.POST("/item/create", controllers.CreateItem)
-
+	// Get list of carts
+	r.GET("/cart/list", controllers.GetCarts)
+	// Get list of carts
+	r.GET("/order/list", controllers.GetOrders)
 	// Start Server
 	r.Run()
 }
