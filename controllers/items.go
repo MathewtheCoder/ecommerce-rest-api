@@ -31,7 +31,7 @@ func CreateItem(c *gin.Context) {
 		return
 	}
 
-	// Create book
+	// Create Item
 	item := models.Item{Name: input.Name}
 	models.DB.Create(&item)
 

@@ -14,7 +14,6 @@ func ConnectDataBase() *gorm.DB {
 		panic("Failed to connect to database!")
 	}
 
-	database.AutoMigrate(&Book{})
 	database.AutoMigrate(&User{})
 	database.AutoMigrate(&Cart{})
 	database.AutoMigrate(&Order{})
