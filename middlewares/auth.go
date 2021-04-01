@@ -4,7 +4,6 @@ import (
 	"ecommercestorebackend/models"
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"strings"
@@ -16,11 +15,11 @@ import (
 func EnsureLoggedIn() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		user, exists := c.Get("currentUser")
-		if exists && user.(models.User).ID != 0 {
+		uid := user.(models.User).ID
+		if exists && uid != 0 {
 			return
 		} else {
 			_ = c.AbortWithError(http.StatusUnauthorized, errors.New("Not Authorized"))
-			log.Println("Error2")
 			return
 		}
 	}

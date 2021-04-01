@@ -15,7 +15,7 @@ type User struct {
 	UserName string `json:"username"`
 	Password string `json:"password"`
 	Token    string `json:"token" gorm:"null"`
-	CartId   Cart
+	CartId   uint   `json:"cart_id" gorm:"default:null"`
 }
 
 func (u *User) IsValidPassword(password string) error {
