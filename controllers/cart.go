@@ -55,6 +55,17 @@ func AddToCart(c *gin.Context) {
 // POST /cart/complete/:cartId
 // Add item to cart
 func BuyCart(c *gin.Context) {
-
+	userId, _ := c.Get("currentUserId")
+	var cart models.Cart
+	if err := models.DB.Where("id = ? AND is_purchased = ?", c.Param("cartId"), false).First(&cart).Error; err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Cart not found!"})
+		return
+	}
+	// Update IsPurchased to true
+	cart.IsPurchased = true
+	models.DB.Save(&cart)
+	// Insert into orders
+	order := models.Order{CartID: cart.ID, UserID: userId.(uint)}
+	models.DB.Create(&order)
 	c.JSON(http.StatusCreated, gin.H{"message": "Cart items have been processed"})
 }

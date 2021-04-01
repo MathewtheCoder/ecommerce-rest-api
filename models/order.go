@@ -6,6 +6,6 @@ import (
 
 type Order struct {
 	gorm.Model
-	CartID Cart `json:"cart_id"`
-	UserID User `json:"user_id"`
+	CartID uint `json:"cart_id"`
+	UserID uint `json:"user_id"`
 }
